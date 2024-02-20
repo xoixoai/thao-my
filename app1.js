@@ -5,15 +5,30 @@ const envelops = document.getElementsByClassName("envelop");
 const envelopText = document.getElementById("envelop-content");
 
 let isPlaying = false;
+let timer = null;
 
-// add event listener
 for (let i = 0; i < envelops.length; i++) {
   envelops[0].addEventListener("click", function () {
-    setTimeout(() => {
-      envelopText.textContent = Boolean(Math.round(Math.random()))
-        ? "Có"
-        : "Không";
-    }, 3000);
+    let seconds = 5;
+
+    if (timer) {
+      clearInterval(timer);
+    }
+
+    envelopText.textContent = seconds;
+    seconds--;
+
+    timer = setInterval(() => {
+      envelopText.textContent = seconds;
+      seconds--;
+
+      if (seconds < 0) {
+        clearInterval(timer);
+        envelopText.textContent = Boolean(Math.round(Math.random()))
+          ? "Có"
+          : "Không";
+      }
+    }, 1000);
   });
 }
 

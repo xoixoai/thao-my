@@ -297,8 +297,10 @@ button:focus {
   display: block;
   background-color: #ee8146;
   clip-path: polygon(0 100%, 0 35%, 50% 0, 100% 35%, 100% 100%);
-  width: 400px;
-  height: 500px;
+  width: 90vw;
+  height: 100vw;
+  max-width: 400px;
+  max-height: 450px;
   border-radius: 20px;
 
   cursor: pointer;
@@ -317,7 +319,7 @@ button:focus {
 .envelop-letter {
   position: absolute;
   left: 3%;
-  bottom: 12%;
+  bottom: 15%;
 
   display: flex;
   flex-direction: column;
@@ -332,6 +334,9 @@ button:focus {
 
   pointer-events: none;
   transition: 0.6s;
+
+  font-family: "Dancing Script", cursive;
+  color: #5a5a5a;
 }
 
 .envelop-front-flip-1 {
@@ -365,12 +370,15 @@ button:focus {
 .envelop-heading {
   font-size: 20px;
   margin-bottom: 2px;
+  text-align: center;
+  font-weight: 600;
 
   pointer-events: none;
 }
 
 .envelop-content {
   font-size: 16px;
+  text-align: center;
 
   pointer-events: none;
 }
