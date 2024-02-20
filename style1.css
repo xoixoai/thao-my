@@ -1,0 +1,386 @@
+/* cách tính width và height dựa trên border + padding + content */
+* {
+  box-sizing: border-box;
+}
+
+button:focus {
+  border: none;
+}
+
+.container {
+  position: relative;
+}
+
+.page {
+  width: 100%;
+}
+
+.full-page {
+  min-height: 100vh;
+}
+
+/* css for .full-page class which is child of #page-1 */
+#page-1 > .full-page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+/* animation line in page 1 */
+#page-1 > .full-page::after {
+  /* trick of after */
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 50px;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+
+  /* animation with top-down (from top to bottom), with duration 1s, and repeat the animation */
+  animation-name: top-down;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: both;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+}
+
+#page-0 {
+  background-color: #303030;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom-section {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.bottom-section img {
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
+  margin-top: -10px;
+}
+
+.bottom-section p {
+  color: rgba(255, 255, 255, 0.895);
+}
+
+#page-1 {
+  background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url("images/background-page-1.JPG");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#page-1-content {
+  position: relative;
+  color: white;
+  text-align: center;
+  margin: 200px 20px;
+  max-width: 700px;
+  font-size: 16px;
+}
+
+#page-1-content::before {
+  content: '"';
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 70px;
+}
+
+.page-1-title {
+  margin-top: -10px;
+  margin-bottom: 10px;
+  font-family: "Platfair Display", serif;
+  font-size: 50px;
+  color: white;
+}
+
+.page-1-sub-title {
+  color: white;
+  font-weight: lighter;
+  font-size: 25px;
+}
+
+.button {
+  font-size: 14px;
+  padding: 10px 20px;
+  background-color: #da6220;
+  border-radius: 3px;
+  border: none;
+  cursor: pointer;
+  color: white;
+  transition: 0.3s;
+}
+
+.button:hover {
+  background-color: #ee8146;
+}
+
+.button:active {
+  background-color: #dd5206;
+}
+
+.next-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 10;
+}
+
+.back-button {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  z-index: 10;
+  border: 1px #da6220 solid;
+  background-color: rgba(0, 0, 0, 0.426);
+}
+
+.sound-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10;
+
+  background: url(images/headphone.png);
+  background-size: cover;
+  background-position: center;
+
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* avoid mute-line exceed the headphone icon */
+  overflow: hidden;
+}
+
+#mute-line {
+  background: #da6220;
+  display: inline-block;
+  width: 2px;
+  height: 100px;
+  position: absolute;
+  transform: rotate(45deg);
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* Start Page 2 */
+#page-2 {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#page-2-video-background {
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+  position: absolute;
+}
+
+#page-2-question-wrapper {
+  width: 380px;
+  height: 200px;
+  z-index: 1;
+  position: relative;
+  top: -60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#page-2-question {
+  font-size: 20px;
+  text-align: center;
+  z-index: 11;
+}
+
+#page-2-cloud {
+  position: absolute;
+  width: calc(100% + 170px);
+  height: calc(100% + 170px);
+  z-index: 10;
+  background: url(images/head-to-the-clouds.png);
+  background-size: contain;
+  background-clip: border-box;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+/* End Page 2 */
+
+/* Start Page 3 */
+#page-3 {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  background: url(images/background-page-3.jpg);
+  background-size: cover;
+  background-position: center;
+  clip-path: polygon(0 0, 100% 0, 80% 100%, 0 100%);
+}
+
+#page-3 h1 {
+  color: rgb(42, 42, 42);
+  text-align: center;
+  display: inline-block;
+}
+
+#page-3-wrapper {
+  flex-basis: 50%;
+
+  color: rgb(31, 31, 31);
+  max-width: 500px;
+  width: 40%;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.8)
+  );
+  padding: 30px;
+  margin: 60px;
+}
+/* End Page 3 */
+@keyframes top-down {
+  from {
+    bottom: 80px;
+  }
+  to {
+    bottom: 40px;
+  }
+}
+
+/* start page 1 */
+
+/* end page 1 */
+/* todo: chia theo page,  */
+
+/* global: rule thẻ html > id > class */
+
+.envelop {
+  position: relative;
+  color: rgb(36, 36, 36);
+
+  transition: 0.3s;
+}
+
+.envelop-back-flip {
+  display: block;
+  background-color: #ee8146;
+  clip-path: polygon(0 100%, 0 35%, 50% 0, 100% 35%, 100% 100%);
+  width: 400px;
+  height: 500px;
+  border-radius: 20px;
+
+  cursor: pointer;
+}
+
+/* css for envelop class when child element envelop-back-flip has been hovered */
+.envelop:has(.envelop-back-flip:hover) {
+  transform: translateY(5%);
+}
+
+/* css for envelop-letter when envelop-back-flip has been hovered */
+.envelop-back-flip:hover ~ .envelop-letter {
+  transform: translateY(-45%);
+}
+
+.envelop-letter {
+  position: absolute;
+  left: 3%;
+  bottom: 12%;
+
+  display: flex;
+  flex-direction: column;
+
+  width: 94%;
+  height: 59%;
+
+  background-color: rgb(238, 238, 238);
+  border-radius: 10px;
+
+  padding: 10px 26px;
+
+  pointer-events: none;
+  transition: 0.6s;
+}
+
+.envelop-front-flip-1 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  background-color: #da6220;
+  clip-path: polygon(0 100%, 0 35%, 100% 100%);
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+
+  pointer-events: none;
+}
+
+.envelop-front-flip-2 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  display: block;
+  background-color: #dd5206;
+  clip-path: polygon(0 100%, 100% 35%, 100% 100%);
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+
+  pointer-events: none;
+}
+
+.envelop-heading {
+  font-size: 20px;
+  margin-bottom: 2px;
+
+  pointer-events: none;
+}
+
+.envelop-content {
+  font-size: 16px;
+
+  pointer-events: none;
+}
+
+.envelop-footer-text {
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.574);
+
+  pointer-events: none;
+}
